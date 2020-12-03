@@ -62,6 +62,11 @@ public class RTCVideoViewManager extends SimpleViewManager<WebRTCView> {
     view.setRotate90(rotation);
   }
 
+  @ReactProp(name = "mirrorVertically")
+  public void setMirrorVertically(WebRTCView view, boolean mirrorVertically) {
+    view.setMirrorVertically(mirrorVertically);
+  }
+
   /**
    * Sets the z-order of a specific {@link WebRTCView} in the stacking space of
    * all {@code WebRTCView}s. For more details, refer to the documentation of

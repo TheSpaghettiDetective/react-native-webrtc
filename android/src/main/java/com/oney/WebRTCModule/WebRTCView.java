@@ -173,6 +173,7 @@ public class WebRTCView extends ViewGroup {
         addView(surfaceViewRenderer);
 
         setMirror(false);
+        setMirrorVertically(false);
         setScalingType(DEFAULT_SCALING_TYPE);
 //        surfaceViewRenderer.setScaleY(-1);
     }
@@ -623,6 +624,10 @@ public class WebRTCView extends ViewGroup {
 
     public void setRotate90(float rotation) {
         this.surfaceViewRenderer.setRotate90(rotation);
+    }
+
+    public void setMirrorVertically(boolean mirrorVertically) {
+        this.surfaceViewRenderer.setMirrorVertically(mirrorVertically);
     }
 
 }

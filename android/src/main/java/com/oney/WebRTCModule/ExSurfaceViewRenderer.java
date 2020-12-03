@@ -84,6 +84,10 @@ public class ExSurfaceViewRenderer extends SurfaceView implements SurfaceHolder.
         this.eglRenderer.setMirror(mirror);
     }
 
+    public void setMirrorVertically(boolean mirrorVertically) {
+        this.eglRenderer.setMirrorVertically(mirrorVertically);
+    }
+
     public void setRotate90(float rotation) {
         // rotation must be a multiple of 90
         int rotate90 = Math.round(rotation / 90) * 90;
