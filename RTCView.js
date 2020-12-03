@@ -52,7 +52,13 @@ const RTCView = {
      * remote video(s) which appear in the background, and 1 for the local
      * video(s) which appear above the remote video(s).
      */
-    zOrder: PropTypes.number
+    zOrder: PropTypes.number,
+    
+    /**
+     * For only Android platform.
+     * On Android, RTC SurfaceView can't be force rotated by view's rotation.
+     */
+    rotate: PropTypes.number
   },
 };
 

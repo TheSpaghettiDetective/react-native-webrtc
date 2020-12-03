@@ -57,6 +57,11 @@ public class RTCVideoViewManager extends SimpleViewManager<WebRTCView> {
     view.setStreamURL(streamURL);
   }
 
+  @ReactProp(name = "rotate")
+  public void setRotate(WebRTCView view, float rotation) {
+    view.setRotate90(rotation);
+  }
+
   /**
    * Sets the z-order of a specific {@link WebRTCView} in the stacking space of
    * all {@code WebRTCView}s. For more details, refer to the documentation of

@@ -159,7 +159,7 @@ public class WebRTCView extends ViewGroup {
      * The {@link View} and {@link VideoSink} implementation which
      * actually renders {@link #videoTrack} on behalf of this instance.
      */
-    private final SurfaceViewRenderer surfaceViewRenderer;
+    private final ExSurfaceViewRenderer surfaceViewRenderer;
 
     /**
      * The {@code VideoTrack}, if any, rendered by this {@code WebRTCView}.
@@ -169,11 +169,12 @@ public class WebRTCView extends ViewGroup {
     public WebRTCView(Context context) {
         super(context);
 
-        surfaceViewRenderer = new SurfaceViewRenderer(context);
+        surfaceViewRenderer = new ExSurfaceViewRenderer(context);
         addView(surfaceViewRenderer);
 
         setMirror(false);
         setScalingType(DEFAULT_SCALING_TYPE);
+//        surfaceViewRenderer.setScaleY(-1);
     }
 
     /**
@@ -453,6 +454,7 @@ public class WebRTCView extends ViewGroup {
         if (this.mirror != mirror) {
             this.mirror = mirror;
             surfaceViewRenderer.setMirror(mirror);
+
             // SurfaceViewRenderer takes the value of its mirror property into
             // account upon its layout.
             requestSurfaceViewRendererLayout();
@@ -618,4 +620,9 @@ public class WebRTCView extends ViewGroup {
             rendererAttached = true;
         }
     }
+
+    public void setRotate90(float rotation) {
+        this.surfaceViewRenderer.setRotate90(rotation);
+    }
+
 }
