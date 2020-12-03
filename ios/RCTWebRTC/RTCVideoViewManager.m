@@ -144,28 +144,21 @@ typedef NS_ENUM(NSInteger, RTCVideoViewObjectFit) {
  */
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
-#if defined(RTC_SUPPORTS_METAL)
 #if !TARGET_OS_OSX
+  #if TARGET_OS_SIMULATOR
+    RTCEAGLVideoView *subview = [[RTCEAGLVideoView alloc] initWithFrame:CGRectZero];
+    subview.delegate = self;
+    _videoView = subview;
+  #else
     RTCMTLVideoView *subview = [[RTCMTLVideoView alloc] initWithFrame:CGRectZero];
     subview.delegate = self;
     _videoView = subview;
+  #endif
 #else
       RTCMTLNSVideoView *subview = [[RTCMTLNSVideoView alloc] initWithFrame:CGRectZero];
       subview.wantsLayer = true;
       subview.delegate = self;
       _videoView = subview;
-#endif
-#else
-#if !TARGET_OS_OSX
-    RTCEAGLVideoView *subview = [[RTCEAGLVideoView alloc] initWithFrame:CGRectZero];
-    subview.delegate = self;
-    _videoView = subview;
-#else
-            RTCMTLNSVideoView *subview = [[RTCMTLNSVideoView alloc] initWithFrame:CGRectZero];
-      subview.wantsLayer = true;
-            subview.delegate = self;
-            _videoView = subview;
-      #endif
 #endif
 
     _videoSize.height = 0;
