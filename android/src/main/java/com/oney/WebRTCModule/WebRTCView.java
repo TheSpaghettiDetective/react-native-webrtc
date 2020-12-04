@@ -95,6 +95,8 @@ public class WebRTCView extends ViewGroup {
      */
     private final Object layoutSyncRoot = new Object();
 
+    private boolean mirrorVertically;
+
     /**
      * The indicator which determines whether this {@code WebRTCView} is to
      * mirror the video represented by {@link #videoTrack} during its rendering.
@@ -627,7 +629,12 @@ public class WebRTCView extends ViewGroup {
     }
 
     public void setMirrorVertically(boolean mirrorVertically) {
-        this.surfaceViewRenderer.setMirrorVertically(mirrorVertically);
+        if (this.mirrorVertically != mirrorVertically) {
+            this.mirrorVertically = mirrorVertically;
+            surfaceViewRenderer.setMirrorVertically(mirrorVertically);
+
+            requestSurfaceViewRendererLayout();
+        }
     }
 
 }
